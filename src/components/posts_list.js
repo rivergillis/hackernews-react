@@ -26,6 +26,12 @@ class PostsList extends Component {
         return this.props.fetchPost(postId);
       });
     }
+    // wait until we have all of the posts
+    if (this.props.posts.length < 30) {
+      return (
+        <div></div>
+      );
+    }
     return (
       <ul>
         {this.props.posts.map(this.renderPost)}
