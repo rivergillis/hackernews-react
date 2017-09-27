@@ -3,7 +3,6 @@ import {FETCH_POST} from '../actions/index';
 export default function(state = {}, action) {
   switch (action.type) {
     case FETCH_POST:
-      console.log(state);
       // copies the state to a new object, copies the payload to a new object
       // then assigns to a key of the id inside the payload
       // then copies the payload with key to the new state

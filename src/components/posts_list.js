@@ -6,11 +6,18 @@ import {fetchTopPostIds} from '../actions';
 import {fetchPost} from '../actions';
 
 class PostsList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.renderPost = this.renderPost.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchTopPostIds();
   }
 
-  renderPost(post) {
+  renderPost(postId) {
+    const post = this.props.posts[postId];
     return (
       <li key={post.id}>
         {post.title}
@@ -19,24 +26,23 @@ class PostsList extends Component {
   }
 
   render() {
-    //console.log(this.props.posts.length);
-    //console.log(this.props.posts);
     // got the top post ids but not the posts
     if (this.props.topIds != null && _.isEmpty(this.props.posts)) {
       this.props.topIds.slice(0, 30).map(postId => {
         return this.props.fetchPost(postId);
       });
     }
+
     // wait until we have all of the posts
-    if (this.props.posts.length < 30) {
+    if (_.size(this.props.posts) < 30) {
       return (
         <div></div>
       );
     }
-    //{this.props.posts.map(this.renderPost)}
 
     return (
       <ul>
+        {this.props.topIds.slice(0, 30).map(this.renderPost)}
       </ul>
     );
   }
