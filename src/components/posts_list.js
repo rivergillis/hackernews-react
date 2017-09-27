@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -18,10 +19,10 @@ class PostsList extends Component {
   }
 
   render() {
-    console.log(this.props.posts.length);
-    console.log(this.props.posts);
+    //console.log(this.props.posts.length);
+    //console.log(this.props.posts);
     // got the top post ids but not the posts
-    if (this.props.topIds != null && this.props.posts.length === 0) {
+    if (this.props.topIds != null && _.isEmpty(this.props.posts)) {
       this.props.topIds.slice(0, 30).map(postId => {
         return this.props.fetchPost(postId);
       });
@@ -32,9 +33,10 @@ class PostsList extends Component {
         <div></div>
       );
     }
+    //{this.props.posts.map(this.renderPost)}
+
     return (
       <ul>
-        {this.props.posts.map(this.renderPost)}
       </ul>
     );
   }
