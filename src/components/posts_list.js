@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
+import TimeAgo from 'react-timeago'
 import {fetchTopPostIds} from '../actions';
 import {fetchPost} from '../actions';
 
@@ -20,11 +21,14 @@ class PostsList extends Component {
   renderPost(postId) {
     const post = this.props.posts[postId];
     return (
-      <li key={post.id}>
-        <Link to={`/story/${post.id}`}>
-          {post.title}
-        </Link>
-      </li>
+      <div key={post.id}>
+        <li>
+          <Link to={`/story/${post.id}`}>
+            {post.title}
+          </Link>
+        </li>
+        <span>{post.score} points by {post.by} <TimeAgo date={post.time * 1000} /> | {post.descendants} comments</span>
+      </div>
     );
   }
 

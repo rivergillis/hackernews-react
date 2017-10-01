@@ -9,6 +9,7 @@ import './styles/index.css';
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
 import PostsList from './components/posts_list';
+import StoryView from './components/story_view';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
@@ -17,7 +18,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path="/story/:id" component={PostsList} />
+          <Route path="/story/:id" component={StoryView} />
           <Route path="/" component={PostsList} />
         </Switch>
       </div>
