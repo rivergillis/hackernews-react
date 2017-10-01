@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { Link } from 'react-router-dom';
 import {fetchTopPostIds} from '../actions';
 import {fetchPost} from '../actions';
 
@@ -20,7 +21,9 @@ class PostsList extends Component {
     const post = this.props.posts[postId];
     return (
       <li key={post.id}>
-        {post.title}
+        <Link to={`/story/${post.id}`}>
+          {post.title}
+        </Link>
       </li>
     );
   }
